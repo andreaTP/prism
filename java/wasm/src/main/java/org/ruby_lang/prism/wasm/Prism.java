@@ -1,7 +1,6 @@
 package org.ruby_lang.prism.wasm;
 
 import com.dylibso.chicory.annotations.WasmModuleInterface;
-import com.dylibso.chicory.runtime.ByteArrayMemory;
 import com.dylibso.chicory.runtime.ImportValues;
 import com.dylibso.chicory.runtime.Instance;
 import com.dylibso.chicory.wasi.WasiOptions;
@@ -23,9 +22,7 @@ public class Prism implements AutoCloseable {
 
     public Prism(WasiOptions wasiOpts) {
         wasi = WasiPreview1.builder().withOptions(wasiOpts).build();
-        instance = Instance.builder(PrismParser.load())
-            .withMemoryFactory(ByteArrayMemory::new)
-            .withMachineFactory(PrismParser::create)
+        instance = PrismNative.builder()
             .withImportValues(ImportValues.builder().addFunction(wasi.toHostFunctions()).build())
             .build();
         exports = new Prism_ModuleExports(instance);
