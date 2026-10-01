@@ -53,7 +53,12 @@
     </dependency>
     <dependency>
       <groupId>run.endive</groupId>
+      <artifactId>redline-api-experimental</artifactId>
+    </dependency>
+    <dependency>
+      <groupId>run.endive</groupId>
       <artifactId>redline-runner-jffi-experimental</artifactId>
+      <scope>provided</scope>
     </dependency>
     <dependency>
       <groupId>org.junit.jupiter</groupId>
